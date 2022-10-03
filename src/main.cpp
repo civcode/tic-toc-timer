@@ -56,6 +56,8 @@ int main() {
         cout << val << " us" << endl;
         val = timer.toc2uint(TicTocTimer::ETimeUnit::kMillisecond);
         cout << val << " ms" << endl;
+        val = timer.toc2uint(TicTocTimer::ETimeUnit::kSecond);
+        cout << val << " s" << endl;
         cout << endl;
 
         cout << "float" << endl;
@@ -66,6 +68,8 @@ int main() {
         cout << f << " us" << endl;
         f = timer.toc2float(TicTocTimer::ETimeUnit::kMillisecond);
         cout << f << " ms" << endl;
+        f = timer.toc2float(TicTocTimer::ETimeUnit::kSecond);
+        cout << f << " s" << endl;
     }
 
     return 0;
