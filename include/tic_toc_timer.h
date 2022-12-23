@@ -76,6 +76,8 @@ private:
     TicTocTimer& set_default_unit();
     TicTocTimer& set_default_string();
 
+    string get_unit_string();
+
 };
 
 #include "tic_toc_timer.tpp"

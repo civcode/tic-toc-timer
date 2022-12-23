@@ -125,6 +125,20 @@ TicTocTimer& TicTocTimer::set_default_string() {
     return *this;
 }
 
+string TicTocTimer::get_unit_string() {
+    string unit_string = "";
+    switch (unit_) {
+            case ETimeUnit::kSecond:      unit_string = "s"; break;
+            case ETimeUnit::kMillisecond: unit_string = "ms"; break;
+            case ETimeUnit::kMicrosecond: unit_string = "us"; break;
+            case ETimeUnit::kNanosecond:  unit_string = "ns"; break;
+            case ETimeUnit::kMinute:      unit_string = "minutes"; break;
+            case ETimeUnit::kHour:        unit_string = "hours"; break;
+            case ETimeUnit::kDay:         unit_string = "days"; break;
+    }
+    return unit_string; 
+}
+
 // double TicTocTimer::toc_v() {
 //     return toc().s().value();
 // }

@@ -12,7 +12,8 @@ int main() {
 
         timer.tic();
 
-        uint64_t i_max = 1e8;
+        //uint64_t i_max = 1e11;
+        uint64_t i_max = 1e9;
         for (uint64_t i=0; i<i_max; i++) {
             volatile int v;
             v++;
@@ -22,6 +23,7 @@ int main() {
         cout << timer.value<double>() << endl;
         cout << timer.ms().to_string() << endl;
         cout << (int)timer.ms().value<char>() << endl;
+        cout << (int)timer.ms().value<short>() << endl;
         cout << timer.ns().value<uint32_t>() << endl;
         cout << timer.ns().value<int>() << endl;
         //cout << timer.toc().value<unsigned int>() << endl;

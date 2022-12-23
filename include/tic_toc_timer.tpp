@@ -36,14 +36,13 @@ T TicTocTimer::value() {
     } else {
         double dt = dt_s*factor;
         if (dt > std::numeric_limits<T>::max()) {
-            cout << "[Warning: overflow in unit conversion (dt=" << dt_s << " s)] ";
-            //return std::numeric_limits<T>::max();
+            //cout << "[Warning: overflow in unit conversion (dt=" << dt_s << " s)] ";
+            cout << "[Warning: overflow in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] ";
             dt = std::numeric_limits<T>::max();
         }
         //assert(("Overflow in unit conversion (type is too small)", dt < std::numeric_limits<T>::max()));
         if (dt < 1.0)
             cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
-        //return static_cast<T>(round(dt_s*factor));
         return static_cast<T>(round(dt));
     }
 }
@@ -55,18 +54,9 @@ string TicTocTimer::to_string(bool add_unit) {
     string postfix = "";
 
     if (add_unit) {
-        switch (unit_) {
-            case ETimeUnit::kSecond:      postfix = " s"; break;
-            case ETimeUnit::kMillisecond: postfix = " ms"; break;
-            case ETimeUnit::kMicrosecond: postfix = " us"; break;
-            case ETimeUnit::kNanosecond:  postfix = " ns"; break;
-            case ETimeUnit::kMinute:      postfix = " minutes"; break;
-            case ETimeUnit::kHour:        postfix = " hours"; break;
-            case ETimeUnit::kDay:         postfix = " days"; break;
-        }
+        postfix = " " + get_unit_string();
     }
 
-    //auto value_to_string = [=](double val) {
     auto value_to_string = [=]() {
         std::ostringstream oss;
         if (std::is_floating_point_v<T>) {
