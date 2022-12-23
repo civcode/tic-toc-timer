@@ -61,6 +61,21 @@ TicTocTimer& TicTocTimer::ns() {
     return *this;
 }
 
+TicTocTimer& TicTocTimer::minute() {
+    unit_ = ETimeUnit::kMinute;
+    return *this; 
+}
+
+TicTocTimer& TicTocTimer::hour() {
+    unit_ = ETimeUnit::kHour;
+    return *this; 
+}
+
+TicTocTimer& TicTocTimer::day() {
+    unit_ = ETimeUnit::kDay;
+    return *this; 
+}
+
 TicTocTimer& TicTocTimer::fixed(int precision) {
     numberFormat_ = EStringNumberFormat::kFixed;
     precision_ = precision; 

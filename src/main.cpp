@@ -21,6 +21,12 @@ int main() {
         cout << timer.ms().to_string() << endl;
         cout << "\n";
 
+        cout << timer.toc().value() << endl;
+        cout << timer.toc().minute().to_string() << endl;
+        cout << timer.minute().value<int>() << endl;
+        cout << timer.hour().to_string() << endl;
+        cout << timer.day().to_string() << endl;
+        cout << "\n";
         // cout << "dt = " << timer.toc().s().value() << " s" << endl;
         // cout << "dt = " << timer.ns().value<int>() << " ns" << endl;
         
@@ -44,11 +50,13 @@ int main() {
         cout << "dt = " << timer.to_string() << endl;
         cout << "dt = " << timer.scientific().to_string() << endl;
         cout << "dt = " << timer.default_unit().to_string() << endl;
-        cout << "dt = " << timer.fixed(1).ms().to_string() << endl;
+        cout << "dt = " << timer.fixed(2).ms().to_string() << endl;
         cout << "dt = " << timer.default_unit().to_string() << endl;
+        cout << "dt = " << timer.us().leading_zeros(5,2,'x').to_string() << endl;
         cout << "dt = " << timer.default_string().to_string() << endl;
         cout << "dt = " << timer.default_all().to_string() << endl;
         cout << "\n";
+        return 0;
         cout << "dt = " << timer.toc().ms().to_string() << endl;
         cout << "dt = " << timer.toc().ms().fixed().to_string() << endl;;
         cout << "dt = " << timer.toc().ms().fixed(1).to_string() << endl;;

@@ -22,6 +22,9 @@ public:
         kMicrosecond,
         kMillisecond,
         kSecond,
+        kMinute,
+        kHour,
+        kDay
     };
 
     enum class EStringNumberFormat {
@@ -41,8 +44,10 @@ public:
     TicTocTimer& ms();
     TicTocTimer& us();
     TicTocTimer& ns();
-    // TicTocTimer& min();
-    // TicTocTimer& hour();
+    TicTocTimer& minute();
+    TicTocTimer& hour();
+    TicTocTimer& day();
+
     TicTocTimer& fixed(int precision=3);
     TicTocTimer& leading_zeros(int decimals=5, int precision=2, char filler='0');
     TicTocTimer& scientific();
@@ -63,6 +68,9 @@ public:
             case ETimeUnit::kMillisecond: factor = 1.0E3; break;
             case ETimeUnit::kMicrosecond: factor = 1.0E6; break;
             case ETimeUnit::kNanosecond:  factor = 1.0E9; break;
+            case ETimeUnit::kMinute:      factor = 1.0/60; break;
+            case ETimeUnit::kHour:        factor = 1.0/60/60; break;
+            case ETimeUnit::kDay:         factor = 1.0/60/60/24; break;
         }
 
         if (std::is_floating_point_v<T>) {
@@ -89,6 +97,9 @@ public:
                 case ETimeUnit::kMillisecond: postfix = " ms"; break;
                 case ETimeUnit::kMicrosecond: postfix = " us"; break;
                 case ETimeUnit::kNanosecond:  postfix = " ns"; break;
+                case ETimeUnit::kMinute:      postfix = " minutes"; break;
+                case ETimeUnit::kHour:        postfix = " hours"; break;
+                case ETimeUnit::kDay:         postfix = " days"; break;
             }
         }
 
