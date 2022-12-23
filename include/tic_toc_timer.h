@@ -47,6 +47,10 @@ public:
     TicTocTimer& leading_zeros(int decimals=5, int precision=2, char filler='0');
     TicTocTimer& scientific();
 
+    TicTocTimer& default_all();
+    TicTocTimer& default_unit();
+    TicTocTimer& default_string();
+
     //double toc_v();
     
     template <typename T=double>
@@ -174,6 +178,9 @@ private:
 
     uint64_t dt_ns_;
     std::chrono::high_resolution_clock::time_point start_;
+
+    TicTocTimer& set_default_unit();
+    TicTocTimer& set_default_string();
 
 };
 

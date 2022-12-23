@@ -31,11 +31,11 @@ void TicTocTimer::tic() {
 }
 
 TicTocTimer& TicTocTimer::toc() {
-    unit_ = ETimeUnit::kSecond;
-    numberFormat_ = EStringNumberFormat::kDefault;
-    decimals_ = 0;
-    precision_ = 0;
-    w_ = 0;
+    // unit_ = ETimeUnit::kSecond;
+    // numberFormat_ = EStringNumberFormat::kDefault;
+    // decimals_ = 0;
+    // precision_ = 0;
+    // w_ = 0;
     auto duration_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now()-start_);
     dt_ns_ = static_cast<uint64_t>(duration_ns.count());
     return *this;
@@ -77,6 +77,34 @@ TicTocTimer& TicTocTimer::leading_zeros(int decimals, int precision, char filler
 
 TicTocTimer& TicTocTimer::scientific() {
     numberFormat_ = EStringNumberFormat::kScientific;
+    return *this;
+}
+
+TicTocTimer& TicTocTimer::default_all() {
+    return (this->default_unit().default_string());
+}
+
+TicTocTimer& TicTocTimer::default_unit() {
+    set_default_unit();
+    return *this;
+}
+
+TicTocTimer& TicTocTimer::default_string() {
+    set_default_string();
+    return *this;
+}
+
+TicTocTimer& TicTocTimer::set_default_unit() {
+    unit_ = ETimeUnit::kSecond;
+    return *this;
+}
+
+TicTocTimer& TicTocTimer::set_default_string() {
+    numberFormat_ = EStringNumberFormat::kDefault;
+    decimals_ = 0;
+    precision_ = 0;
+    w_ = 0;
+    filler_ = '0';
     return *this;
 }
 

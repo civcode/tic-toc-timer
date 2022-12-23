@@ -16,23 +16,38 @@ int main() {
             v++;
         }
 
-        //cout << timer.toc_v() << endl;
-        //cout << "\n";
         cout << timer.toc().value() << endl;
+        cout << timer.toc().ms().to_string() << endl;
+        cout << timer.ms().to_string() << endl;
         cout << "\n";
 
-        cout << "dt = " << timer.toc().s().value() << " s" << endl;
-        //cout << "dt = " << timer.toc().ns().value<int>() << " ns" << endl;
-        cout << "dt = " << timer.ns().value<int>() << " ns" << endl;
-        cout << "dt = " << timer.toc().ns().value() << " ns" << endl;
-        cout << "dt = " << timer.toc().ms().value() << " ms" << endl;
-        cout << timer.toc().ms().value() << endl;
-        cout << timer.us().value<float>() << endl;
-        timer.toc().us().value<int>();
-        cout << timer.toc().ms().value() << endl;
+        // cout << "dt = " << timer.toc().s().value() << " s" << endl;
+        // cout << "dt = " << timer.ns().value<int>() << " ns" << endl;
+        
+        // for (int i=0; i<1e6; i++) {
+        //     volatile int v;
+        //     v++;
+        // }
+        // timer.tic();
+        // cout << "dt = " << timer.toc().ns().value<int>() << " ns" << endl;
+        // cout << "dt = " << timer.toc().s().value() << " s" << endl;
+
+        // cout << "dt = " << timer.toc().ns().value() << " ns" << endl;
+        // cout << "dt = " << timer.toc().ms().value() << " ms" << endl;
+        // cout << timer.toc().ms().value() << endl;
+        // cout << timer.us().value<float>() << endl;
+        // timer.toc().us().value<int>();
+        // cout << timer.toc().ms().value() << endl;
 
         cout << "\n";
-        cout << "dt = " << timer.toc().s().to_string() << endl;
+        cout << "dt = " << timer.toc().us().to_string() << endl;
+        cout << "dt = " << timer.to_string() << endl;
+        cout << "dt = " << timer.scientific().to_string() << endl;
+        cout << "dt = " << timer.default_unit().to_string() << endl;
+        cout << "dt = " << timer.fixed(1).ms().to_string() << endl;
+        cout << "dt = " << timer.default_unit().to_string() << endl;
+        cout << "dt = " << timer.default_string().to_string() << endl;
+        cout << "dt = " << timer.default_all().to_string() << endl;
         cout << "\n";
         cout << "dt = " << timer.toc().ms().to_string() << endl;
         cout << "dt = " << timer.toc().ms().fixed().to_string() << endl;;
