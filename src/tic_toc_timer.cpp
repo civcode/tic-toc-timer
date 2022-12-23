@@ -110,6 +110,7 @@ TicTocTimer& TicTocTimer::default_string() {
     return *this;
 }
 
+
 TicTocTimer& TicTocTimer::set_default_unit() {
     unit_ = ETimeUnit::kSecond;
     return *this;

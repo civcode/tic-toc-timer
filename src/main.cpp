@@ -17,20 +17,19 @@ int main() {
         }
 
         cout << timer.toc().value<float>() << endl;
-        cout << timer.toc().value<double>() << endl;
-        cout << timer.toc().value<int>() << endl;
-        cout << timer.toc().value<char>() << endl;
+        cout << timer.value<double>() << endl;
+        cout << timer.value<int>() << endl;
+        //cout << (int)timer.us().value<char>() << endl;
         //cout << timer.toc().value<unsigned int>() << endl;
-        return 0;
         // cout << timer.toc().ms().to_string() << endl;
         // cout << timer.ms().to_string() << endl;
         // cout << "\n";
 
-        // cout << timer.toc().value() << endl;
-        // cout << timer.toc().minute().to_string() << endl;
-        // cout << timer.minute().value<int>() << endl;
-        // cout << timer.hour().to_string() << endl;
-        // cout << timer.day().to_string() << endl;
+        cout << timer.toc().value() << endl;
+        cout << timer.toc().minute().to_string() << endl;
+        cout << timer.minute().value<int>() << endl;
+        cout << timer.hour().to_string() << endl;
+        cout << timer.day().to_string() << endl;
         cout << "\n";
         // cout << "dt = " << timer.toc().s().value() << " s" << endl;
         // cout << "dt = " << timer.ns().value<int>() << " ns" << endl;
