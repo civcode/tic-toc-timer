@@ -16,10 +16,11 @@ int main() {
             v++;
         }
 
-        // cout << timer.toc().value<float>() << endl;
-        // cout << timer.toc().value<double>() << endl;
-        // cout << timer.toc().value<int>() << endl;
-        cout << timer.toc().value<unsigned int>() << endl;
+        cout << timer.toc().value<float>() << endl;
+        cout << timer.toc().value<double>() << endl;
+        cout << timer.toc().value<int>() << endl;
+        cout << timer.toc().value<char>() << endl;
+        //cout << timer.toc().value<unsigned int>() << endl;
         return 0;
         // cout << timer.toc().ms().to_string() << endl;
         // cout << timer.ms().to_string() << endl;

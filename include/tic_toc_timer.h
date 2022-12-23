@@ -179,4 +179,6 @@ private:
 
 };
 
+#include "tic_toc_timer.tpp"
+
 #endif // TIC_TOC_TIMER_H

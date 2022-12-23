@@ -12,6 +12,8 @@ include_directories (
 
 set(timer_SRC
     ${CMAKE_SOURCE_DIR}/src/tic_toc_timer.cpp
+    #${CMAKE_SOURCE_DIR}/src/tic_toc_timer.tpp
+    #${CMAKE_SOURCE_DIR}/include/tic_toc_timer.tpp
 )
 
 add_library(tictoctimer src/tic_toc_timer.cpp)
