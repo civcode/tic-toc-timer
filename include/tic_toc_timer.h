@@ -59,8 +59,8 @@ public:
     T value();
 
     template <typename T=double>
-    //string to_string(bool add_unit=true, string prefix="") {
     string to_string(bool add_unit=true);
+    //string to_string(bool add_unit=true, string prefix="") {
     
 private:
     int decimals_;

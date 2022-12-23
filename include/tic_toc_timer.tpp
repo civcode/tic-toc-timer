@@ -13,11 +13,6 @@ T TicTocTimer::value() {
     // if (std::is_same<T, int>::value)
     //     cout << "is int\n"; 
 
-    /** TODO
-     *  - check for truncation if type is too small for value,
-     *    especially for ns
-    */
-
     double dt_s = static_cast<double>(dt_ns_)/1.0E9;
     double factor;
     
@@ -42,7 +37,8 @@ T TicTocTimer::value() {
         }
         //assert(("Overflow in unit conversion (type is too small)", dt < std::numeric_limits<T>::max()));
         if (dt < 1.0)
-            cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
+            cout << "[Warning: loss of precision in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
+            //cout << "[Warning: precision lost in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
         return static_cast<T>(round(dt));
     }
 }

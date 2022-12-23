@@ -26,6 +26,9 @@ int main() {
         cout << (int)timer.ms().value<short>() << endl;
         cout << timer.ns().value<uint32_t>() << endl;
         cout << timer.ns().value<int>() << endl;
+        cout << timer.s().value<int>() << endl;
+        cout << timer.minute().value<int>() << endl;
+        cout << timer.hour().value<int>() << endl;
         //cout << timer.toc().value<unsigned int>() << endl;
         // cout << timer.toc().ms().to_string() << endl;
         // cout << timer.ms().to_string() << endl;
