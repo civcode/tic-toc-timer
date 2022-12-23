@@ -11,20 +11,24 @@ int main() {
         TicTocTimer timer;
 
         timer.tic();
-        for (int i=0; i<1e6; i++) {
+
+        uint64_t i_max = 1e8;
+        for (uint64_t i=0; i<i_max; i++) {
             volatile int v;
             v++;
         }
 
         cout << timer.toc().value<float>() << endl;
         cout << timer.value<double>() << endl;
-        cout << timer.value<int>() << endl;
-        //cout << (int)timer.us().value<char>() << endl;
+        cout << timer.ms().to_string() << endl;
+        cout << (int)timer.ms().value<char>() << endl;
+        cout << timer.ns().value<uint32_t>() << endl;
+        cout << timer.ns().value<int>() << endl;
         //cout << timer.toc().value<unsigned int>() << endl;
         // cout << timer.toc().ms().to_string() << endl;
         // cout << timer.ms().to_string() << endl;
         // cout << "\n";
-
+        return 0;
         cout << timer.toc().value() << endl;
         cout << timer.toc().minute().to_string() << endl;
         cout << timer.minute().value<int>() << endl;

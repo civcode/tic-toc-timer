@@ -1,8 +1,9 @@
+#include <cassert>
 
 template <typename T>
 T TicTocTimer::value() {
     //static_assert(!std::is_same<T, char>::value, "Don't use small types.");
-    static_assert(sizeof(T) >= 4, "Larger type is required.");
+    //static_assert(sizeof(T) >= 4, "Larger type is required (TicTocTimer::value<type>()).");
     //static_assert(!std::is_signed<T>::value);
 
     // if (std::is_same<T, float>::value)
@@ -11,6 +12,11 @@ T TicTocTimer::value() {
     //     cout << "is double\n"; 
     // if (std::is_same<T, int>::value)
     //     cout << "is int\n"; 
+
+    /** TODO
+     *  - check for truncation if type is too small for value,
+     *    especially for ns
+    */
 
     double dt_s = static_cast<double>(dt_ns_)/1.0E9;
     double factor;
@@ -29,11 +35,17 @@ T TicTocTimer::value() {
         return dt_s*factor;
     } else {
         double dt = dt_s*factor;
+        if (dt > std::numeric_limits<T>::max()) {
+            cout << "[Warning: overflow in unit conversion (dt=" << dt_s << " s)] ";
+            //return std::numeric_limits<T>::max();
+            dt = std::numeric_limits<T>::max();
+        }
+        //assert(("Overflow in unit conversion (type is too small)", dt < std::numeric_limits<T>::max()));
         if (dt < 1.0)
             cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
-        return static_cast<T>(round(dt_s*factor));
+        //return static_cast<T>(round(dt_s*factor));
+        return static_cast<T>(round(dt));
     }
-    //return dt_s/factor;
 }
 
 template <typename T>
