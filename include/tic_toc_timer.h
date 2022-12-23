@@ -59,30 +59,7 @@ public:
     //double toc_v();
     
     template <typename T=double>
-    T value() {
-        double dt_s = static_cast<double>(dt_ns_)/1.0E9;
-        double factor;
-        
-        switch (unit_) {
-            case ETimeUnit::kSecond:      factor = 1.0; break;
-            case ETimeUnit::kMillisecond: factor = 1.0E3; break;
-            case ETimeUnit::kMicrosecond: factor = 1.0E6; break;
-            case ETimeUnit::kNanosecond:  factor = 1.0E9; break;
-            case ETimeUnit::kMinute:      factor = 1.0/60; break;
-            case ETimeUnit::kHour:        factor = 1.0/60/60; break;
-            case ETimeUnit::kDay:         factor = 1.0/60/60/24; break;
-        }
-
-        if (std::is_floating_point_v<T>) {
-            return dt_s*factor;
-        } else {
-            double dt = dt_s*factor;
-            if (dt < 1.0)
-                cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
-            return static_cast<T>(round(dt_s*factor));
-        }
-        //return dt_s/factor;
-    }
+    T value();
 
     template <typename T=double>
     //string to_string(bool add_unit=true, string prefix="") {

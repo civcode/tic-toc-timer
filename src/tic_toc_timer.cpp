@@ -17,6 +17,7 @@ using std::string;
 //     setwidth_(setwidth)
 // {};
 
+
 TicTocTimer::TicTocTimer() :
     unit_(ETimeUnit::kSecond),
     numberFormat_(EStringNumberFormat::kDefault),
@@ -107,6 +108,59 @@ TicTocTimer& TicTocTimer::default_unit() {
 TicTocTimer& TicTocTimer::default_string() {
     set_default_string();
     return *this;
+}
+
+//template float  TicTocTimer::value<float>();
+template double TicTocTimer::value<double>();
+template int TicTocTimer::value<int>();
+
+template <typename T>
+T TicTocTimer::value() {
+    //static_assert(!std::is_same<T, float>::value, "xxx");
+    // static_assert(std::is_same<T, double>::value || 
+    //               std::is_same<T, double>::value || 
+    //               std::is_same<T, int>::value, 
+    //               "xxx");
+    //static_assert(std::is_signed<T>::value);
+    static_assert(!std::is_same<T, unsigned int>::value);
+    //static_assert(!std::is_same<T, int>::value);
+
+    // static_assert(std::is_same<T, float>::value || 
+    //               std::is_same<T, double>::value || 
+    //               std::is_same<T, int>::value, 
+    //               "xxx");
+
+
+
+    if (std::is_same<T, float>::value)
+        cout << "is float\n"; 
+    if (std::is_same<T, double>::value)
+        cout << "is double\n"; 
+    if (std::is_same<T, int>::value)
+        cout << "is int\n"; 
+
+    double dt_s = static_cast<double>(dt_ns_)/1.0E9;
+    double factor;
+    
+    switch (unit_) {
+        case ETimeUnit::kSecond:      factor = 1.0; break;
+        case ETimeUnit::kMillisecond: factor = 1.0E3; break;
+        case ETimeUnit::kMicrosecond: factor = 1.0E6; break;
+        case ETimeUnit::kNanosecond:  factor = 1.0E9; break;
+        case ETimeUnit::kMinute:      factor = 1.0/60; break;
+        case ETimeUnit::kHour:        factor = 1.0/60/60; break;
+        case ETimeUnit::kDay:         factor = 1.0/60/60/24; break;
+    }
+
+    if (std::is_floating_point_v<T>) {
+        return dt_s*factor;
+    } else {
+        double dt = dt_s*factor;
+        if (dt < 1.0)
+            cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
+        return static_cast<T>(round(dt_s*factor));
+    }
+    //return dt_s/factor;
 }
 
 TicTocTimer& TicTocTimer::set_default_unit() {
