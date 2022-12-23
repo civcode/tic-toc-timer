@@ -68,6 +68,9 @@ public:
         if (std::is_floating_point_v<T>) {
             return dt_s*factor;
         } else {
+            double dt = dt_s*factor;
+            if (dt < 1.0)
+                cout << "[Warning: loss of precision (dt=" << dt_s << " s)] "; 
             return static_cast<T>(round(dt_s*factor));
         }
         //return dt_s/factor;
@@ -104,6 +107,10 @@ public:
                 // }  
                 switch (numberFormat_) {
                     case EStringNumberFormat::kFixed:
+                        /** TODO
+                         *  - print warning in case fo loss of precision
+                        */
+
                         oss << std::setprecision(precision_) << std::fixed;
                         break;
                     case EStringNumberFormat::kLeadingZeros:
