@@ -32,7 +32,7 @@ T TicTocTimer::value() {
         return dt;
     } else {
         if (dt_ns_ != 0 && dt < 1.0) {
-            cout << "[Warning: loss of precision in conversion to <integral type> " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
+            cout << "[Warning: loss of precision in conversion to <integral_type> " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
         }
         if (dt > std::numeric_limits<T>::max()) {
             cout << "[Warning: overflow in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] ";

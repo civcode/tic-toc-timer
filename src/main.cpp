@@ -12,8 +12,8 @@ int main() {
 
         timer.tic();
 
-        //timer.ms();
-        timer.ms().toc();
+        timer.ms();
+        //timer.ms().toc();
 
         //uint64_t i_max = 1e11;
         uint64_t i_max = 1e9;
