@@ -26,19 +26,18 @@ T TicTocTimer::value() {
         case ETimeUnit::kDay:         factor = 1.0/60/60/24; break;
     }
 
+    double dt = dt_s*factor;
+
     if (std::is_floating_point_v<T>) {
-        return dt_s*factor;
+        return dt;
     } else {
-        double dt = dt_s*factor;
+        if (dt_ns_ != 0 && dt < 1.0) {
+            cout << "[Warning: loss of precision in conversion to <integral type> " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
+        }
         if (dt > std::numeric_limits<T>::max()) {
-            //cout << "[Warning: overflow in unit conversion (dt=" << dt_s << " s)] ";
             cout << "[Warning: overflow in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] ";
             dt = std::numeric_limits<T>::max();
         }
-        //assert(("Overflow in unit conversion (type is too small)", dt < std::numeric_limits<T>::max()));
-        if (dt < 1.0)
-            cout << "[Warning: loss of precision in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
-            //cout << "[Warning: precision lost in conversion to " << get_unit_string() << " (dt=" << dt_s << " s)] "; 
         return static_cast<T>(round(dt));
     }
 }
