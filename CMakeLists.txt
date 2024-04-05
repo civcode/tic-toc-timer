@@ -19,8 +19,8 @@ add_library(tictoctimer STATIC src/tic_toc_timer.cpp)
 
 target_include_directories(tictoctimer PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(example example/timer_example.cpp)
-target_link_libraries(example tictoctimer)
+add_executable(tic_toc_timer_example example/timer_example.cpp)
+target_link_libraries(tic_toc_timer_example tictoctimer)
 
 # Install instructions are needed for FetchContent to work 
 install(TARGETS tictoctimer DESTINATION lib)
