@@ -5,8 +5,6 @@ project(tictoctimer)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE debug)
 
-set_property(TARGET ${PROJECT_name} PROPERTY CXX_STANDARD 11)
-
 include_directories (
     ${CMAKE_SOURCE_DIR}/include
 )
